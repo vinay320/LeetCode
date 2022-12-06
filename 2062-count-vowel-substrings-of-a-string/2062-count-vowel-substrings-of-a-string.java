@@ -11,7 +11,7 @@ class Solution {
             }
             if(word.charAt(i)=='a' || word.charAt(i)=='e' || word.charAt(i)=='i' || word.charAt(i)=='o' || word.charAt(i)=='u')
             {
-                if(word.substring(start,i+1).contains("a") && word.substring(start,i+1).contains("e") &&                                                word.substring(start,i+1).contains("i") &&           
+                if(word.substring(start,i+1).contains("a") && word.substring(start,i+1).contains("e") && word.substring(start,i+1).contains("i") &&           
                    word.substring(start,i+1).contains("o") && 
                    word.substring(start,i+1).contains("u"))
                 {
