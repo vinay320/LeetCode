@@ -35,11 +35,12 @@ class Solution
 {
     public long  MissingNo(int[][] matrix)
     {
+        // code here
         int n = matrix.length;
         long rsum[] = new long[n];
         long csum[] = new long[n];
         
-        int z_x=0, z_y=0;
+        int ZeroX=0, ZeroY=0;
         
         for(int i=0; i<n; i++)
         {
@@ -49,8 +50,8 @@ class Solution
                 csum[j] += matrix[i][j];
                 if(matrix[i][j]==0)
                 {
-                    z_x=i;
-                    z_y=j;
+                    ZeroX=i;
+                    ZeroY=j;
                 }
             }
         }
@@ -64,14 +65,14 @@ class Solution
             d2 += matrix[i][n-i-1];
         }
         
-        boolean on_d1 = (z_x==z_y);
-        boolean on_d2 = (z_x==(n-z_y-1));
+        boolean on_d1 = (ZeroX==ZeroY);
+        boolean on_d2 = (ZeroX==(n-ZeroY-1));
         
         long ex_sum = -1;
         
         for(int i=0; i<n; i++)
         {
-            if(i!=z_x && i!=z_y)
+            if(i!=ZeroX && i!=ZeroY)
             {
                 if(rsum[i]!=csum[i]) 
                     return -1;
@@ -82,19 +83,19 @@ class Solution
             }
         }
         
-        long ans = ex_sum - rsum[z_x];
+        long ans = ex_sum - rsum[ZeroX];
         
-        if(on_d1) d1 += ans;
-        if(on_d2) d2 += ans;
+        if(on_d1) 
+            d1 += ans;
+        if(on_d2) 
+            d2 += ans;
         
-        rsum[z_x] += ans;
-        csum[z_y] += ans;
+        rsum[ZeroX] += ans;
+        csum[ZeroY] += ans;
         
-        if(d1!=d2) return -1;
-        if(rsum[z_x]!=csum[z_y]) return -1;
-        if(ans<=0) return -1;
+        if(d1!=d2 || rsum[ZeroX]!=csum[ZeroY] || ans<=0) 
+            return -1;
         
         return ans;
-        
     }
 }
