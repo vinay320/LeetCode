@@ -16,16 +16,22 @@
 class Solution {
     public int sumNumbers(TreeNode root) 
     {
-        return sumNumbers(root, 0);
+     return Sum(root,0);      
     }
-    
-    public int sumNumbers(TreeNode root, int currSum) 
+    static int Sum(TreeNode root,int sum)
     {
-        if (root == null) 
+        if(root==null)
+        {
             return 0;
-        currSum = currSum * 10 + root.val;
-        if (root.left == null && root.right == null) 
-            return currSum;
-        return sumNumbers(root.left, currSum) + sumNumbers(root.right, currSum);
+        }
+        sum=10*sum+root.val;
+        
+        if(root.left==null && root.right==null)
+        {
+            return sum;
+        }
+        
+        return Sum(root.left,sum)+Sum(root.right,sum);
+        
     }
 }
