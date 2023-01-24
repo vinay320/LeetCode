@@ -9,10 +9,9 @@ class Solution {
             }
             else
             {
-                if(s.charAt(i)=='*')
-                {
+                
                     stk.pop();
-                }
+                
             }
             
             
