@@ -85,10 +85,8 @@ class Solution{
         }
 
         int [][] dp = new int[N+1][2];
-
-        // n1 mean we do a light up and 0 mean we doesn't do a light up
-
-        return Math.min(fun(1, 1, -1, adj, dp)+1, fun(1, 0, -1, adj, dp));
+         
+          return Math.min(fun(1, 1, -1, adj, dp)+1, fun(1, 0, -1, adj, dp));
 
     }
 }
