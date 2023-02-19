@@ -15,43 +15,50 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> l=new ArrayList<>();
+        List<List<Integer>> sec=new ArrayList<>();
         Deque<TreeNode> dq=new LinkedList<>();
         if(root==null)
         {
-            return l;
+            return sec;
         }
         dq.offer(root);
-        boolean flag=false;
-        while(dq.size()!=0)
+        boolean f=true;
+        while(!dq.isEmpty())
         {
-            List<Integer> l2=new ArrayList<>();
+            List<Integer> fir=new ArrayList<>();
             int size=dq.size();
-            while(size--!=0)
+            while(size-->0)
             {
-                if(flag)
+                if(f)
                 {
-                    TreeNode head = dq.poll();
-                    if(head.right!=null) 
-                        dq.offer(head.right);
-                    if(head.left!=null) 
-                        dq.offer(head.left);
-                    l2.add(head.val); 
+                    TreeNode x=dq.pollLast();
+                    fir.add(x.val);
+                    if(x.left!=null)
+                    {
+                        dq.addFirst(x.left);
+                    }
+                    if(x.right!=null)
+                    {
+                        dq.addFirst(x.right);
+                    }
                 }
                 else
                 {
-                    TreeNode head = dq.pollLast();
-                    if(head.left!=null) 
-                        dq.addFirst(head.left);
-                    if(head.right!=null) 
-                        dq.addFirst(head.right);
-                 l2.add(head.val); 
-                }               
-                
+                    TreeNode x=dq.poll();
+                    fir.add(x.val);
+                    if(x.right!=null)
+                    {
+                        dq.offer(x.right);
+                    }
+                    if(x.left!=null)
+                    {
+                        dq.offer(x.left);
+                    }
+                }
             }
-            flag=!flag;
-            l.add(new ArrayList<>(l2));
+            f=!f;
+            sec.add(new ArrayList(fir));
         }
-        return l;
+        return sec;
     }
 }
