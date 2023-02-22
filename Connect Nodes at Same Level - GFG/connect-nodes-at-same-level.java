@@ -168,6 +168,5 @@ class Solution {
                 prev = cur;
             }
         }
-        
     }
 }
