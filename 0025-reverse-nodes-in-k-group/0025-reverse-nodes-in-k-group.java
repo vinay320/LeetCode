@@ -9,38 +9,38 @@
  * }
  */
 class Solution {
-    public ListNode reverseKGroup(ListNode node, int k) {
-        
-        Stack<ListNode> st=new Stack<>();
-        ListNode dumm=new ListNode();
-        ListNode tmp=dumm;
-        ListNode start=null;
-        
-        while(node!=null)
+    public ListNode reverseKGroup(ListNode head, int k) {
+        Stack<Integer> st=new Stack<>();
+        ListNode dum=new ListNode(0);
+        ListNode tmp=dum;
+        while(head!=null)
         {
-            if(st.size()==0)
-            {
-                start=node;
-            }
-            st.push(node);
-            if(st.size()==k)
-            {
-                while(!st.empty())
+            
+                st.push(head.val);
+            
+                    
+                if(st.size()==k)
                 {
-                    ListNode nn=new ListNode(st.pop().val);
-                    dumm.next=nn;
-                    dumm=dumm.next;
+                    while(!st.isEmpty())
+                    {
+                        ListNode nn=new ListNode(st.pop());
+                        tmp.next=nn;
+                        tmp=tmp.next;
+                    }
                 }
-            }
-            node=node.next;
+            
+            head=head.next;
         }
-        
-        if(st.size()>0)
+        ListNode extra=null;
+        while(!st.isEmpty())
         {
-            dumm.next=start;
+            ListNode nn=new ListNode(st.pop());
+            nn.next=extra;
+            extra=nn;
+            
         }
+        tmp.next=extra;
         
-        return tmp.next;
-        
+        return dum.next;
     }
 }
