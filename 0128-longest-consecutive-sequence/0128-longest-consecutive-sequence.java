@@ -1,40 +1,30 @@
 class Solution {
-    public int longestConsecutive(int[] arr) {
-        Map<Integer,Boolean> m=new HashMap<>();
+    public int longestConsecutive(int[] nums) {
         
-        // agar ek kam wala exist karta h to curr ko false krdo
-        for(int i=0;i<arr.length;i++)
+        HashSet<Integer> set=new HashSet<>();
+        for(int i:nums)
         {
-            if(m.containsKey(arr[i]-1))
-            {
-                m.put(arr[i],false);
-            }
-            else
-            {
-                m.put(arr[i],true);
-            }
-            // agr ek jada wala exist karta h to jada wale ko false krdo
-            if(m.containsKey(arr[i]+1))
-            {
-                m.put(arr[i]+1,false);
-            }
+            set.add(i);
         }
         
-        int ans=0;
-        for(int key:m.keySet())
+        
+        int max=0;
+        for(int i:nums)
         {
-            if(m.get(key)==true)
+            if(!set.contains(i-1))
             {
-                int c=0;
-                while(m.containsKey(key))
+                int curr=i;
+                int c=1;
+                while(set.contains(curr+1))
                 {
-                    c++;
-                    key++;
+                    curr+=1;
+                    c+=1;
                 }
-                 ans=Math.max(ans,c);
+                max=Math.max(max,c);
             }
-           
         }
-        return ans;
+        
+        return max;
+        
     }
 }
