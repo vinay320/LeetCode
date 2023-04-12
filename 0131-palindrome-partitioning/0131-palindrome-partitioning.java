@@ -22,28 +22,22 @@ class Solution {
     {
         if(s.length()==0)
         {
-            
-            // String[] arr=a.split(" ");
-            // List<String> la=new ArrayList<>();
-            // for (int i = 0; i < arr.length ; i++) {
-            //     la.add(arr[i]);
-            // }
             l.add(new ArrayList<>(la));
-           
             return;
         }
-        for (int i=1;i<=s.length();i++)
+         
+        
+        for(int i=1;i<=s.length();i++)
         {
             String x=s.substring(0,i);
             if(pal(x))
             {
-                la.add(x);
-                parti(s.substring(i),la);
-                la.remove(la.size()-1);
-                
-                
+            la.add(x);
+            parti(s.substring(i),la);
+            la.remove(la.size()-1);
             }
-
         }
+         
+       
     }
 }
