@@ -36,35 +36,28 @@ class Rat {
 class Solution {
     public static ArrayList<String> findPath(int[][] m, int n) {
         // Your code here
-        ArrayList<String> l=new ArrayList<>();
-        if(m[0][0]==0)
-        {
-            return l;
-        }
-        
-        per(0,0,m.length,m[0].length,"",l,m);
-        Collections.sort(l);
-        return l;
+        ArrayList<String> ans=new ArrayList<>();
+        Rat(m,ans,0,0,"");
+        return ans;
     }
-    
-    static void per(int a,int b,int e1,int e2,String sum,ArrayList<String> l,int[][] m)
+    static void Rat(int[][] arr,ArrayList<String> ans,int row,int col,String path)
     {
+        if(row>=arr.length || col>=arr.length || row<0 || col<0|| arr[row][col]==0)
+        {
+            return;
+        }
+        if(row==arr.length-1 && col==arr.length-1)
+        {
+            // path+=arr[row][col];
+            ans.add(path);
+            return;
+        }
         
-        if(a>=e1 || b>=e2 || a<0 || b<0 || m[a][b]==0)
-        {
-            return;
-        }
-        if(a==e1-1 && b==e2-1)
-        {
-            // System.out.println(sum);
-            l.add(sum);
-            return;
-        }
-        m[a][b]=0;
-        per(a+1,b,e1,e2,sum+"D",l,m);
-        per(a,b+1,e1,e2,sum+"R",l,m);
-        per(a,b-1,e1,e2,sum+"L",l,m);
-        per(a-1,b,e1,e2,sum+"U",l,m);
-        m[a][b]=1;
+        arr[row][col]=0;
+        Rat(arr,ans,row+1,col,path+"D");
+        Rat(arr,ans,row-1,col,path+"U");
+        Rat(arr,ans,row,col-1,path+"L");
+        Rat(arr,ans,row,col+1,path+"R");
+        arr[row][col]=1;
     }
 }
